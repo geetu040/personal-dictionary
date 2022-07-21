@@ -3,7 +3,7 @@ import React from "react"
 export default function AddWord({ state, changeState }) {
 	function moreKey() {
 		let tbody = document.querySelector("#add_tbody")
-		let row_contetn_to_add = `<th scope="col"><input type="text" style="width: 60%;"></th><td scope="col"><input type="text" style="width: 100%;"></td>`
+		let row_contetn_to_add = `<th scope="col"><input type="text" style="width: 60%;"></th><td ><input type="text" style="width: 100%;"></td>`
 		let row = document.createElement("tr")
 		row.innerHTML = row_contetn_to_add
 		tbody.insertBefore(row, tbody.children[tbody.children.length - 1]);
@@ -73,15 +73,15 @@ export default function AddWord({ state, changeState }) {
 				<tbody id="add_tbody" style={{width: "70vw"}}>
 					<tr >
 						<th scope="col">Word</th>
-						<td scope="col"><input type="text" style={{ width: "100%" }} /></td>
+						<td ><input type="text" style={{ width: "100%" }} /></td>
 					</tr>
 					<tr >
 						<th scope="col">Meaning</th>
-						<td scope="col"><input type="text" style={{ width: "100%" }} /></td>
+						<td ><input type="text" style={{ width: "100%" }} /></td>
 					</tr>
 					<tr >
 						<th scope="col"><input placeholder="Key (e.g Synonyms)" type="text" style={{ width: "60%" }} /></th>
-						<td scope="col"><input placeholder="Add Value" type="text" style={{ width: "100%" }} /></td>
+						<td ><input placeholder="Add Value" type="text" style={{ width: "100%" }} /></td>
 					</tr>
 					<tr ><td colSpan={2}>
 						<button onClick={() => { lessKey() }} className={`mx-1 btn btn-sm btn bg-${state.theme[0].i} text-${state.theme[0].j}`} style={{  fontSize: "100%" }} ><strong>-</strong></button>

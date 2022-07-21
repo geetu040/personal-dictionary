@@ -28,7 +28,9 @@ export default function BottomNav({ state, changeState }) {
 		}
 		for (let i in new_lexicon) {
 			new_lexicon[i].connections = new_lexicon[i].connections.filter((item) => {
-				if (!connections_to_remove.includes(item)) { return item }
+				// if (!connections_to_remove.includes(item)) { return item }
+				if (!connections_to_remove.includes(item)) { return true }
+				else {return false}
 			})
 		}
 		changeState({ lexicon: new_lexicon })
@@ -53,7 +55,8 @@ export default function BottomNav({ state, changeState }) {
 		for (let i = 0; i < checks.length; i++) {
 			if (checks[i].checked) {
 				new_lexicon[i].connections = refined_connection_list.filter((connection) => {
-					if (connection != new_lexicon[i].time) { return connection }
+					if (connection !== new_lexicon[i].time) { return true }
+					else {return false}
 				})
 			}
 		}
@@ -72,7 +75,9 @@ export default function BottomNav({ state, changeState }) {
 		}
 		for (let i in new_lexicon) {
 			new_lexicon[i].connections = new_lexicon[i].connections.filter((item) => {
-				if (!connections_to_remove.includes(item)) { return item }
+				// if (!connections_to_remove.includes(item)) { return item }
+				if (!connections_to_remove.includes(item)) { return true }
+				else {return false}
 			})
 		}
 		changeState({ lexicon: new_lexicon })
@@ -91,11 +96,11 @@ export default function BottomNav({ state, changeState }) {
 					new_lexicon = [].concat(new_lexicon.slice(0, j), state.lexicon[i], new_lexicon.slice(j))
 					break
 				}
-				if (j == new_lexicon.length - 1) { new_lexicon = new_lexicon.concat(state.lexicon[i]) }
+				if (j === new_lexicon.length - 1) { new_lexicon = new_lexicon.concat(state.lexicon[i]) }
 			}
 		}
 
-		if (state.sortCounter == 1 || state.sortCounter == 2) { new_lexicon = new_lexicon.reverse() }
+		if (state.sortCounter === 1 || state.sortCounter === 2) { new_lexicon = new_lexicon.reverse() }
 		changeState({ lexicon: new_lexicon })
 		unselect_all()
 	}

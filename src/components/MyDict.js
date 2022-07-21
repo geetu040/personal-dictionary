@@ -10,10 +10,10 @@ export default function MyDict({ state, changeState }) {
 			<h1 className='my-5 text-center'>Your Words are listed here</h1>
 
 			<div>
-				{(state.addMode || state.lexicon.length == 0) &&
+				{(state.addMode || state.lexicon.length === 0) &&
 					<AddWord state={state} changeState={changeState} />
 				}
-				{state.lexicon.length != 0 &&
+				{state.lexicon.length !== 0 &&
 					<Lexicon state={state} changeState={changeState} />
 				}
 				{!state.addMode && state.lexicon.length !== 0 &&

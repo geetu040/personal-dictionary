@@ -7,7 +7,7 @@ export default function Row({ state, changeState, sr }) {
 		document.querySelector(".row-data-" + e.target.classList[0].slice(4))
 			.style.setProperty(
 				"display",
-				(current_state == "none" ? "table-row" : "none")
+				(current_state === "none" ? "table-row" : "none")
 			)
 	}
 
@@ -35,7 +35,7 @@ export default function Row({ state, changeState, sr }) {
 			<th scope="row">
 				<label className="control control--checkbox">
 					<input className='checks' id={`check-${sr}`} type="checkbox" />
-					<div className="control__indicator"></div>
+					<div className="control!==indicator"></div>
 				</label>
 			</th>
 
