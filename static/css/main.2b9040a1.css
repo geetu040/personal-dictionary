@@ -1,0 +1,159 @@
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	margin: 0
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
+}
+
+.bg-1 {
+	background-color: #a0aecd !important
+}
+
+.text-1 {
+	color: #a0aecd !important
+}
+
+.bg-2 {
+	background-color: #000 !important
+}
+
+.text-2 {
+	color: #000 !important
+}
+
+.bg-3 {
+	background-color: #6e6e6e !important
+}
+
+.text-3 {
+	color: #6e6e6e !important
+}
+
+.bg-4 {
+	background-color: #bcfd4c !important
+}
+
+.text-4 {
+	color: #bcfd4c !important
+}
+
+.bg-5 {
+	background-color: #101820 !important
+}
+
+.text-5 {
+	color: #101820 !important
+}
+
+.bg-6 {
+	background-color: #fee715 !important
+}
+
+.text-6 {
+	color: #fee715 !important
+}
+
+.bg-7 {
+	background-color: #42eadd !important
+}
+
+.text-7 {
+	color: #42eadd !important
+}
+
+.bg-8 {
+	background-color: #cdb599 !important
+}
+
+.text-8 {
+	color: #cdb599 !important
+}
+
+.bg-11 {
+	background-color: #000035 !important
+}
+
+.text-11 {
+	color: #000035 !important
+}
+
+.bg-12 {
+	background-color: #54c7cf !important
+}
+
+.text-12 {
+	color: #54c7cf !important
+}
+
+.bg-13 {
+	background-color: #b7b5b5 !important
+}
+
+.text-13 {
+	color: #b7b5b5 !important
+}
+
+.bg-14 {
+	background-color: #161616 !important
+}
+
+.text-14 {
+	color: #161616 !important
+}
+
+#table-lexicon>tbody>tr:hover {
+	background-color: rgba(0, 0, 0, .075)
+}
+
+.animate {
+	-webkit-animation-direction: normal;
+	animation-direction: normal;
+	-webkit-animation-duration: 3s;
+	animation-duration: 3s;
+	-webkit-animation-name: alert_fade;
+	animation-name: alert_fade;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear
+}
+
+@-webkit-keyframes alert_fade {
+	0% {
+		opacity: 0
+	}
+
+	10% {
+		opacity: 1
+	}
+
+	80% {
+		opacity: 1
+	}
+
+	to {
+		opacity: 0
+	}
+}
+
+@keyframes alert_fade {
+	0% {
+		opacity: 0
+	}
+
+	10% {
+		opacity: 1
+	}
+
+	80% {
+		opacity: 1
+	}
+
+	to {
+		opacity: 0
+	}
+}
+
+/*# sourceMappingURL=main.2b9040a1.css.map*/
