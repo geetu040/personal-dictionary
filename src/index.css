@@ -46,3 +46,19 @@ code {
 #table-lexicon>tbody>tr:hover {
   background-color: rgba(0, 0, 0, 0.075);
 }
+
+
+.animate {
+  animation-name: alert_fade;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  /* animation-iteration-count: infinite; */
+  animation-direction: normal;
+}
+
+@keyframes alert_fade {
+  0%   {opacity: 0;}
+  10%   {opacity: 1;}
+  80%   {opacity: 1;}
+  100%  {opacity: 0;}
+}

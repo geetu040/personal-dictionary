@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from './ContextTag'
 import Row from './Row'
 
-export const Lexicon = ({ state, changeState }) => {
+export const Lexicon = () => {
+	const state = useContext(Context)
+
 	return (
 		// <table className={`table table-hover table-light table-responsive`} style={{width: "100%"}}>
 		<table id='table-lexicon' className={`table text-${state.theme[0].i} bg-${state.theme[0].j} table-responsive`} style={{width: "100%"}}>
@@ -19,7 +22,7 @@ export const Lexicon = ({ state, changeState }) => {
 			</thead>
 			<tbody id='table_body'>
 				{Array.from({ length: state.lexicon.length }, (v, i) => i).map((i) => {
-					return (<Row key={i} state={state} changeState={changeState} sr={i + 1} />)
+					return (<Row key={i} sr={i+1} />)
 				})}
 			</tbody>
 		</table>

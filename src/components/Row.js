@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from './ContextTag'
 
-export default function Row({ state, changeState, sr }) {
+export default function Row({ sr }) {
+	const state = useContext(Context)
+
 	let data = state.lexicon[sr-1]
 	function handleData(e) {
 		let current_state = getComputedStyle(document.querySelector(".row-data-" + e.target.classList[0].slice(4))).getPropertyValue("display")

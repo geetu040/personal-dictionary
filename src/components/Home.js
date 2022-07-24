@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
+import {Context} from './ContextTag'
 
-export default function Home({ state, changeState, API_URL }) {
+export default function Home() {
+	const state = useContext(Context)
 	let navigate = useNavigate();
 	return (
 		<div className={`text-center py-5`} style={{}}>

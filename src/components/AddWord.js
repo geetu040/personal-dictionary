@@ -1,6 +1,9 @@
-import React from "react"
+import React, { useContext } from 'react'
+import { Context } from './ContextTag'
 
-export default function AddWord({ state, changeState }) {
+export default function AddWord() {
+	const {setLexicon, lexicon, theme, setAddMode, triggerAlert} = useContext(Context)
+
 	function moreKey() {
 		let tbody = document.querySelector("#add_tbody")
 		let row_contetn_to_add = `<th scope="col"><input type="text" style="width: 60%;"></th><td ><input type="text" style="width: 100%;"></td>`
@@ -15,10 +18,9 @@ export default function AddWord({ state, changeState }) {
 	}
 	function addWord() {
 		let new_word = {}
-
-		const check_entry = (entry, message) => {
+		const check_entry = (entry) => {
 			if (entry.replace(/\s+/g, '') === "") {
-				alert(message);
+				triggerAlert("danger", "Invalid", "Field Cannot Be Empty")
 				document.querySelector("#mainCont").style.setProperty("border-width", "1px 3px")
 				setTimeout(() => {
 					document.querySelector("#mainCont").style.setProperty("border-width", "1px 1px")
@@ -53,23 +55,14 @@ export default function AddWord({ state, changeState }) {
 		new_word["connections"] = []
 		document.querySelector("#add_tbody>tr:nth-child(1)>td>input").value = ""
 		document.querySelector("#add_tbody>tr:nth-child(2)>td>input").value = ""
-		changeState({ lexicon: state.lexicon.concat([new_word]) })
-
-		document.querySelector("#mainCont").style.setProperty("border-width", "1px 3px")
-		setTimeout(() => {
-			document.querySelector("#mainCont").style.setProperty("border-width", "1px 1px")
-		}, 500);
-
-
+		setLexicon(lexicon.concat([new_word]))
 
 	}
 	return (
-		// <div id="mainCont" className="container text-center my-5 py-5" style={{border: "1px solid grey", backgroundColor: "#dbdbdb73", borderRadius: "5%" }}>
-		<div id="mainCont" className="container text-center my-5 py-5" style={{border: `1px solid`, borderRadius: "5%", backgroundColor: `rgba(0, 0, 0, ${state.theme[0].k})` }}>
+		<div id="mainCont" className="container text-center my-5 py-5" style={{border: `1px solid`, borderRadius: "5%", backgroundColor: `rgba(0, 0, 0, ${theme[0].k})` }}>
 
 			<h3 className="text-center my-4">Add Word</h3>
-			{/* <table className={`table table-responsive text-${state.theme[0].i}`} style={{ width: "85%", margin: "auto", backgroundColor: "#dbdbdb73" }}> */}
-			<table className={`table table-responsive text-${state.theme[0].i}`} style={{ width: "85%", margin: "auto" }}>
+			<table className={`table table-responsive text-${theme[0].i}`} style={{ width: "85%", margin: "auto" }}>
 				<tbody id="add_tbody" style={{width: "70vw"}}>
 					<tr >
 						<th scope="col">Word</th>
@@ -84,14 +77,14 @@ export default function AddWord({ state, changeState }) {
 						<td ><input placeholder="Add Value" type="text" style={{ width: "100%" }} /></td>
 					</tr>
 					<tr ><td colSpan={2}>
-						<button onClick={() => { lessKey() }} className={`mx-1 btn btn-sm btn bg-${state.theme[0].i} text-${state.theme[0].j}`} style={{  fontSize: "100%" }} ><strong>-</strong></button>
-						<button onClick={() => { moreKey() }} className={`mx-1 btn btn-sm btn bg-${state.theme[0].i} text-${state.theme[0].j}`} style={{  fontSize: "100%" }} ><strong>+</strong></button>
+						<button onClick={() => { lessKey() }} className={`mx-1 btn btn-sm btn bg-${theme[0].i} text-${theme[0].j}`} style={{  fontSize: "100%" }} ><strong>-</strong></button>
+						<button onClick={() => { moreKey() }} className={`mx-1 btn btn-sm btn bg-${theme[0].i} text-${theme[0].j}`} style={{  fontSize: "100%" }} ><strong>+</strong></button>
 					</td></tr>
 				</tbody>
 			</table>
 			<div className="container">
-				<button onClick={() => { changeState({ addMode: false }) }} className={`m-4 btn bg-${state.theme[0].i} text-${state.theme[0].j}`}>Cancel</button>
-				<button onClick={() => { addWord() }} className={`m-4 btn bg-${state.theme[0].i} text-${state.theme[0].j}`}>Add</button>
+				<button onClick={() => { setAddMode(false) }} className={`m-4 btn bg-${theme[0].i} text-${theme[0].j}`}>Cancel</button>
+				<button onClick={() => { addWord() }} className={`m-4 btn bg-${theme[0].i} text-${theme[0].j}`}>Add</button>
 			</div>
 
 

@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { Context } from './ContextTag'
 
-export default function BottomNav({ state, changeState }) {
+export default function BottomNav() {
+	const state = useContext(Context)
 
 	function select_all() {
 		let checks = document.getElementsByClassName("checks")
@@ -33,7 +35,7 @@ export default function BottomNav({ state, changeState }) {
 				else {return false}
 			})
 		}
-		changeState({ lexicon: new_lexicon })
+		state.setLexicon(new_lexicon)
 		unselect_all()
 	}
 	function connect() {
@@ -60,7 +62,7 @@ export default function BottomNav({ state, changeState }) {
 				})
 			}
 		}
-		changeState({ lexicon: new_lexicon })
+		state.setLexicon(new_lexicon)
 		unselect_all()
 	}
 	function disconnect() {
@@ -80,11 +82,11 @@ export default function BottomNav({ state, changeState }) {
 				else {return false}
 			})
 		}
-		changeState({ lexicon: new_lexicon })
+		state.setLexicon(new_lexicon)
 		unselect_all()
 	}
 	function sort() {
-		changeState({ sortCounter: (1 + state.sortCounter) % 4 })
+		state.setSortCounter( (1 + state.sortCounter) % 4 )
 		let schema;
 		if (state.sortCounter <= 1) { schema = "word" }
 		else if (state.sortCounter > 1) { schema = "time" }
@@ -96,19 +98,19 @@ export default function BottomNav({ state, changeState }) {
 					new_lexicon = [].concat(new_lexicon.slice(0, j), state.lexicon[i], new_lexicon.slice(j))
 					break
 				}
-				if (j === new_lexicon.length - 1) { new_lexicon = new_lexicon.concat(state.lexicon[i]) }
+				if (parseInt(j) === new_lexicon.length - 1) { new_lexicon = new_lexicon.concat(state.lexicon[i]) }
 			}
 		}
 
 		if (state.sortCounter === 1 || state.sortCounter === 2) { new_lexicon = new_lexicon.reverse() }
-		changeState({ lexicon: new_lexicon })
+		state.setLexicon(new_lexicon)
 		unselect_all()
 	}
 
 	return (
 		<nav className={`navbar sticky-bottom navbar-expand-lg my-4 `} style={{backgroundColor: "#d8d8d880"}} >
 			<div className="d-flex flex-row flex-wrap justify-content-evenly" style={{ width: "100%" }}>
-				<button onClick={() => { changeState({ addMode: true }) }} className={`my-1 btn btn-sm bg-${state.theme[0].i} text-${state.theme[0].j}`}>Add Word</button>
+				<button onClick={() => { state.setAddMode(true) }} className={`my-1 btn btn-sm bg-${state.theme[0].i} text-${state.theme[0].j}`}>Add Word</button>
 				<button onClick={() => connect()} className={`my-1 btn btn-sm bg-${state.theme[0].i} text-${state.theme[0].j}`}>Connect</button>
 				<button onClick={() => disconnect()} className={`my-1 btn btn-sm bg-${state.theme[0].i} text-${state.theme[0].j}`}>Disconnect</button>
 				<button onClick={() => remove()} className={`my-1 btn btn-sm bg-${state.theme[0].i} text-${state.theme[0].j}`}>Remove</button>

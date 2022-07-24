@@ -1,16 +1,19 @@
-import { React } from 'react'
+import { React, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
+import { Context } from './ContextTag'
 
-export const Word  = ({ state, changeState, API_URL }) => {
+export const Word  = () => {
+	const state = useContext(Context)
+	
 	let navigate = useNavigate()
 	let {word} = useParams()
 	function fetch_data() {
-		fetch(API_URL + `lexicon/dictionary-${word}`)
-		// fetch(API_URL + `lexicon/abamdom-${word}`)
+		fetch(state.API_URL + `/dictionary-${word}`)
+		// fetch(state.API_URL + `lexicon/abamdom-${word}`)
 		.then(response => response.json())
 		.then(data => {
-			if (state.info === null) { changeState({ info: data }); } 
-			else if (state.info.word !== data.word) { changeState({ info: data }); }
+			if (state.info === null) { state.setInfo(data) } 
+			else if (state.info.word !== data.word) { state.setInfo(data) }
 		});
 	}
 	if (state.info === null) {
@@ -32,7 +35,7 @@ export const Word  = ({ state, changeState, API_URL }) => {
 						<img className='' onClick={() => { document.getElementById("sound").play() }} src="/speaker.png" alt="Hear" width="30px" />
 						<audio id='sound' controls src={state.info.audio_link} style={{ display: "none" }}></audio>
 					</>} <br />
-					<div onClick={() => { state.info.lexicon.time = Date.now(); changeState({ lexicon: state.lexicon.concat(state.info.lexicon) }) }} className={`btn mt-3 btn-sm bg-${state.theme[0].j} text-${state.theme[0].i}`} style={{ border: "2px solid" }}>Save to My Dictionary</div>
+					<div onClick={() => { state.info.lexicon.time = Date.now(); state.setLexicon(state.lexicon.concat(state.info.lexicon)) }} className={`btn mt-3 btn-sm bg-${state.theme[0].j} text-${state.theme[0].i}`} style={{ border: "2px solid" }}>Save to My Dictionary</div>
 					{state.info.partOfSpeech.length !== 0 &&
 						<div className='my-3'><h4> Part of Speech:</h4><div className='d-flex flex-row flex-wrap justify-content-center'>
 							{state.info.partOfSpeech.map((e) => {
